@@ -51,9 +51,13 @@ Getting setup
 ```bash
 git clone https://github.com/rhart92/intro-to-vim-tmux
 cd intro-to-vim-tmux
-chmod +x run
+
+# Should take about 2 minutes to build initially
+./build
+
 ./run
 ```
+> Thanks @beau for helping me test this!
 
 What is vim?
 ========================================
@@ -280,11 +284,6 @@ Finding text
 
 You can also do cool regex stuff if you're into that stuff.
 
-But... if you smart case find and replace you need abolish.
-
-Remember you can use the `c` flag to confirm each replacement.
-and the `g` flag to replace all occurrences on a line.
-
 Replacing text
 ========================================
 
@@ -306,7 +305,18 @@ Breaking this down:
 - `/` to separate the parts of the command
 - `<options>` to affect how the find is performed
 
+Replacing text
+========================================
+
 Exercise: Open `demo.txt` and replace all instances of `Foo` with `Bar`.
+
+Syntax: `:%s/<find_string>/<replacement_string>/<options>`
+
+## Options
+- `c` confirm each replacement.
+- `g` replace all occurrences on a line, not just the first
+
+> Checkout Abolish.vim for smart case find and replace.
 
 Visual mode
 ========================================
@@ -328,7 +338,15 @@ where ranges are used.
 Utilizing shell commands with Vim content
 ========================================
 
+Vim has a bunch of ways to interact with the shell but the one I use the most 
+is:
+
 - `:<range>!` to run shell commands using a range of content in Vim
+
+which allows you to filter a range of text through a shell command.
+
+Formating JSON using `jq`
+========================================
 
 Exercise: Open `block.json` and we'll use `jq` to format the JSON.
 
@@ -356,18 +374,21 @@ More useful motions
 Actions
 ========================================
 
-- `i`, `a`, `o`
-- `x`, `d`, `c`, `y`
-- `D`, `C`, `Y`
-- `p`, `P`
+- `d` to delete
+- `c` to change
+- `y` to yank (copy)
+- `p` to paste
+
+> Don't have time here, but vim has it's own built in copy paste registers. You 
+can configure to use the system clipboard if you want.
 
 Actions with Motions
 ========================================
 
 - `d`, `c`, `y` with motions
-- Pressign these twice to do line wise operations
-- `J`
-- `gw` for text formatting
+- Pressing these twice to do line wise operations
+
+Demo: Deleting words, lines, etc.
 
 Changing numbers
 ========================================
@@ -395,11 +416,6 @@ text object.
 
 Exercise: Open up `demo.ts` to practice.
 
-Surround
-========================================
-
-A wonderful plugin for surrounding stuff with other stuff.
-
 Escape re-binding
 ========================================
 
@@ -408,45 +424,12 @@ There are a bunch of tricks people use to re-bind escape including:
 - `jk`
 - Caps lock
 
-Relative numbers + absolute numbers + jumping around
-========================================
-
-- `set relativenumber`
-- `set number`
-
-Demo:
-- Relative jump
-- Jump to top of the file
-
-Jumping between open / closed
-========================================
-
-`%` is one of my most used shortcuts for navigating code
-
-Exercise: Do the thing
-
-LSP
-========================================
-
-- Language Server Protocol
-
-Demo with some Typescript
-
 Friendly Manual
 ========================================
 
 - `:tutor` to open vimtutor
 - `:h` to open help
 - Or if you have telescope you can `<leader>fh`
-
-Awesome Vim Plugins
-========================================
-
-- Harpoon
-- AI integrations
-- UndoTree
-- Fugitive
-- Debugging
 
 Intro to Tmux
 ========================================
@@ -458,25 +441,159 @@ This means you can have multiple terminal sessions in a single terminal window.
 It also allows you to have multiple concurrent sessions running which makes it 
 super convinient for development on multiple projects.
 
+Disclaimer
+========================================
 
-Splits both in Tmux and VIM
-============
+All of these keybindings are customizable if you don't like them or they don't 
+make sense to you. As you'll see in the following slides, I've customized some
+of the keybindings to make them easier to remember.
+ 
+Launching tmux
+========================================
 
-Splits are my life #no-tabs
+To launch tmux, you can simply type `tmux` in your terminal.
+
+```
+tmux
+```
+
+Tmux Concepts
+========================================
+
+- Sessions -- a collection of windows
+- Windows (e.g. tabs at the bottom) -- a collection of panes
+- Panes (e.g. splits) -- a section of the terminal
+
+Demo moving around projects.
+
+Tmux prefix
+========================================
+
+Tmux has a prefix key which is `Ctrl-b` by default.
+
+> I find this awkward to type, so for this workshop it's `Ctrl-g` but you can 
+set this to whatever you want.
+
+To send a command to tmux, you must first "send" the prefix.
+
+Tmux Splits
+========================================
+
+> Again I find some of the defaults awkward so I've remapped.
+
+- Prefix, then `|` to split vertically
+- Prefix, then `-` to split horizontally
+
+Exercise: Split your tmux window
+
+Navigating panes
+========================================
+
+> 💡 We can re-use some of our vim knowledge here
+
+- Prefix, then `h` to move left
+- Prefix, then `j` to move down
+- Prefix, then `k` to move up
+- Prefix, then `l` to move right
+
+Exercise: Practice moving around your panes
+
+Closing panes
+========================================
+
+Now that you have a bunch of panes, how do we close them?
+
+- Prefix, then `x` to close the current pane
+- Type `exit` in the pane
+
+Exercise: Close one of your panes
+
+New windows
+========================================
+
+To create a new window (e.g. tab at the bottom):
+
+- Prefix, then `c`
+
+Switching windows
+========================================
+
+To switch between windows:
+
+- Prefix, then `n` to go to the next window
+- Prefix, then `p` to go to the previous window
+- Prefix, then `0-9` to go to a specific window
+
+Naming windows
+========================================
+
+To name a window:
+
+- Prefix, then `,` to rename the current window
+
+Detaching from a session
+========================================
+
+To detach from a session:
+
+- Prefix, then `d`
+
+Detaching vs. Closing
+========================================
+
+In my opinion, this is really the secret sauce of tmux.
+
+The idea is that we can detach from a session and then re-attach to it later 
+keeping all the processes running.
+
+BUT without having to clutter our desktop with a bunch of terminal windows.
+
+Re-attaching to a session
+========================================
+
+To re-attach to a session:
+
+- `tmux attach -t <session_name>`
+- Use `tms` ✨
+
+Session management
+========================================
+
+Tmux comes with a built in session manager (of sorts):
+
+- Prefix, then `w` to list all sessions
+  - From within this list you can select other sessions / panes
+
+Custom session management
+========================================
+
+I use a custom script for improved session management called `tms` which I've 
+included a simplified version of in this container.
+
+Let's try it out!
+
+```
+tms
+```
 
 VSCode + Vim
 ========================================
 
-[Vim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim)
-[Neovim](https://marketplace.visualstudio.com/items?itemName=asvetliakov.vscode-neovim)
+There are two competing plugins for VSCode that allow you to use Vim 
+👇
 
-Thoughts
+[Vim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim)
+  - Used by @beau
+[Neovim](https://marketplace.visualstudio.com/items?itemName=asvetliakov.vscode-neovim)
+  - I used this in a past life
+
+Other VIM things to talk about if we have time
 ========================================
 
-> All magically setup via `kickstart.nvim` which I'll customize slightly and 
-distribute using docker.
-
-- Commenting
+- Surround
+- Fugitive (git integration)
+- Quickfix lists
+- Project wide search
 - LSP
 
 🎥 Fin
