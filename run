@@ -1,0 +1,6 @@
+# Load the image from local
+docker load -i ./image.tar
+
+# Run the image
+# --rm flag automatically kills the container upon exit
+docker run --rm -it test_env

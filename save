@@ -1,0 +1,2 @@
+# Save the docker image
+docker save -o image.tar test_env

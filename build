@@ -1,0 +1,3 @@
+docker build -t test_env .
+docker run -it test_env
+
