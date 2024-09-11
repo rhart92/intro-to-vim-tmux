@@ -1,3 +1,6 @@
+# Build the image
 docker build -t test_env .
-docker run -it test_env
+
+# Save the docker image
+docker save -o image.tar test_env
 

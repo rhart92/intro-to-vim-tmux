@@ -369,24 +369,6 @@ Actions with Motions
 - `J`
 - `gw` for text formatting
 
-Write you own commands super easily!
-========================================
-
-Come up with you own fun stuff!
-
-Leader + Prefix
-========================================
-
-Vim leader.
-Tmux prefix.
-
-Sessionizer
-========================================
-
-SO USEFUL.
-
-Jump back to previous session using TMUX with `[prefix] + L`
-
 Changing numbers
 ========================================
 
@@ -426,12 +408,6 @@ There are a bunch of tricks people use to re-bind escape including:
 - `jk`
 - Caps lock
 
-Terminal Multiplexer
-========================================
-
-- Split terminal into multiple panes
-- Detach and reattach sessions
-
 Relative numbers + absolute numbers + jumping around
 ========================================
 
@@ -463,19 +439,30 @@ Friendly Manual
 - `:h` to open help
 - Or if you have telescope you can `<leader>fh`
 
+Awesome Vim Plugins
+========================================
+
+- Harpoon
+- AI integrations
+- UndoTree
+- Fugitive
+- Debugging
+
+Intro to Tmux
+========================================
+
+Tmux is a terminal multiplexer.
+
+This means you can have multiple terminal sessions in a single terminal window.
+
+It also allows you to have multiple concurrent sessions running which makes it 
+super convinient for development on multiple projects.
+
+
 Splits both in Tmux and VIM
 ============
 
 Splits are my life #no-tabs
-
-Fun things that help me do my work
-========================================
-
-- Harpoon
-- OpenAI
-- UndoTree
-- Fugitive
-- Debugging
 
 VSCode + Vim
 ========================================
