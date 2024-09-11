@@ -308,7 +308,7 @@ Breaking this down:
 Replacing text
 ========================================
 
-Exercise: Open `demo.txt` and replace all instances of `Foo` with `Bar`.
+Exercise: Open `demo.md` and replace all instances of `Foo` with `Bar`.
 
 Syntax: `:%s/<find_string>/<replacement_string>/<options>`
 
@@ -398,31 +398,9 @@ Changing numbers
 Moving around
 ========================================
 
-- `Ctrl-o`, `Ctrl-i`
-- `Ctrl-d`, `Ctrl-u`
-- `zz`
-
-Text objects
-========================================
-
-Some examples:
-
-- `iw`, `aw` -- inner word, a word
-- `i{`, `a{` -- inner block, a block
-- `i"`, `a"` -- inner quote, a quote
-
-These are combined with commands like `d`, `c`, `y`, etc. to operate on the
-text object.
-
-Exercise: Open up `demo.ts` to practice.
-
-Escape re-binding
-========================================
-
-There are a bunch of tricks people use to re-bind escape including:
-- `jj`
-- `jk`
-- Caps lock
+- `Ctrl-o` and `Ctrl-i` to move back and forward in the jump list
+- `Ctrl-d` and `Ctrl-u` to move down and up half a page
+- `zz` to center the screen on the cursor
 
 Friendly Manual
 ========================================
@@ -531,6 +509,26 @@ To name a window:
 
 - Prefix, then `,` to rename the current window
 
+Session management
+========================================
+
+Tmux comes with a built in session manager (of sorts):
+
+- Prefix, then `w` to list all sessions
+  - From within this list you can select other sessions / panes
+
+Custom session management
+========================================
+
+I use a custom script for improved session management called `tms` which I've 
+included a simplified version of in this container.
+
+Let's try it out!
+
+```
+tms
+```
+
 Detaching from a session
 ========================================
 
@@ -556,26 +554,6 @@ To re-attach to a session:
 - `tmux attach -t <session_name>`
 - Use `tms` ✨
 
-Session management
-========================================
-
-Tmux comes with a built in session manager (of sorts):
-
-- Prefix, then `w` to list all sessions
-  - From within this list you can select other sessions / panes
-
-Custom session management
-========================================
-
-I use a custom script for improved session management called `tms` which I've 
-included a simplified version of in this container.
-
-Let's try it out!
-
-```
-tms
-```
-
 VSCode + Vim
 ========================================
 
@@ -586,6 +564,34 @@ There are two competing plugins for VSCode that allow you to use Vim
   - Used by @beau
 [Neovim](https://marketplace.visualstudio.com/items?itemName=asvetliakov.vscode-neovim)
   - I used this in a past life
+
+Back to Vim if we have time
+========================================
+
+- Text objects
+- Escape re-binding
+
+Text objects
+========================================
+
+Some examples:
+
+- `iw`, `aw` -- inner word, a word
+- `i{`, `a{` -- inner block, a block
+- `i"`, `a"` -- inner quote, a quote
+
+These are combined with commands like `d`, `c`, `y`, etc. to operate on the
+text object.
+
+Exercise: Open up `demo.ts` to practice.
+
+Escape re-binding
+========================================
+
+There are a bunch of tricks people use to re-bind escape including:
+- `jj`
+- `jk`
+- Caps lock
 
 Other VIM things to talk about if we have time
 ========================================
